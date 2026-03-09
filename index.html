@@ -1,1 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Ti &mdash; Dia de la Mujer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:   #FDF6EC;
+      --peach:   #F9DCC4;
+      --lavender:#E8D5F5;
+      --rose:    #F2A7BB;
+      --gold:    #C9A84C;
+      --gold-lt: #E8CC7A;
+      --text:    #4A3728;
+      --muted:   #8A7060;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: center; gap: 2rem;
+      padding: .9rem 1.5rem;
+      background: rgba(253,246,236,.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,.25);
+    }
+    nav a {
+      text-decoration: none; font-size: .82rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold); font-weight: 400;
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* ===== SECTIONS common ===== */
+    section { padding: 7rem 1.5rem 5rem; }
+
+    /* ===== HERO ===== */
+    #inicio {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      background: linear-gradient(160deg, var(--cream) 0%, #FDE8F0 50%, var(--lavender) 100%);
+      position: relative; overflow: hidden;
+    }
+    /* floating petals background */
+    #inicio::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(242,167,187,.25) 0%, transparent 35%),
+        radial-gradient(circle at 85% 70%, rgba(232,213,245,.4)  0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(249,220,196,.2)  0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-date {
+      font-size: .78rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.4rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      line-height: 1.15; color: var(--text);
+      overflow: hidden; white-space: nowrap;
+      border-right: 3px solid var(--gold);
+      width: 0;
+      animation: typing 3.2s steps(38,end) .5s forwards,
+                 blink .75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(.95rem, 2.5vw, 1.15rem);
+      color: var(--muted); max-width: 480px;
+      opacity: 0; animation: fadeUp .9s ease 3.8s forwards;
+    }
+    .gold-line {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+      margin: 1.8rem auto 0;
+      opacity: 0; animation: fadeUp .9s ease 4s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== ADMIRATION CARDS ===== */
+    #admiracion {
+      background: var(--cream);
+      text-align: center;
+    }
+    .section-label {
+      font-size: .75rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      margin-bottom: 3rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem; max-width: 900px; margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 24px rgba(201,168,76,.10);
+      border: 1px solid rgba(201,168,76,.15);
+      transition: transform .35s, box-shadow .35s;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 36px rgba(201,168,76,.22);
+    }
+    .card-icon {
+      font-size: 2.8rem; margin-bottom: 1rem;
+      display: block;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; margin-bottom: .7rem; color: var(--text);
+    }
+    .card p { font-size: .93rem; color: var(--muted); line-height: 1.7; }
+
+    /* ===== MANIFESTO ===== */
+    #manifiesto {
+      background: linear-gradient(135deg, #FDE8F0 0%, var(--lavender) 100%);
+      text-align: center;
+    }
+    .manifesto-body {
+      max-width: 680px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 1.6rem;
+    }
+    .manifesto-body p {
+      font-size: clamp(.95rem, 2.2vw, 1.08rem);
+      line-height: 1.85; color: var(--text);
+      font-style: italic;
+    }
+    .manifesto-body p::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; float: left;
+      margin-right: .2rem; line-height: .8;
+      color: var(--gold);
+    }
+
+    /* ===== SURPRISE BUTTON ===== */
+    #sorpresa {
+      text-align: center;
+      background: var(--cream);
+    }
+    .btn-surprise {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: white; font-family: 'Lato', sans-serif;
+      font-size: 1rem; letter-spacing: .12em; text-transform: uppercase;
+      border: none; border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(201,168,76,.35);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .btn-surprise:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 28px rgba(201,168,76,.5);
+    }
+    .hidden-msg {
+      display: none;
+      margin-top: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-left: auto; margin-right: auto;
+      animation: fadeUp .8s ease forwards;
+    }
+    .hidden-msg.show { display: block; }
+
+    /* ===== CONFETTI CANVAS ===== */
+    #confetti-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 999;
+    }
+
+    /* ===== GALLERY / CAROUSEL ===== */
+    #galeria {
+      background: linear-gradient(160deg, var(--peach) 0%, #FDE8F0 100%);
+      text-align: center;
+    }
+    .carousel {
+      position: relative;
+      max-width: 700px; margin: 0 auto;
+      overflow: hidden; border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.12);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform .55s cubic-bezier(.77,0,.175,1);
+    }
+    .slide {
+      min-width: 100%; aspect-ratio: 4/3;
+      background: var(--lavender);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+      color: var(--muted); font-size: .9rem;
+    }
+    .slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .slide-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: .8rem;
+      background: linear-gradient(135deg, var(--lavender), var(--peach));
+      color: var(--muted);
+    }
+    .slide-placeholder span { font-size: 3rem; }
+    .slide-placeholder p { font-size: .85rem; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.75); backdrop-filter: blur(4px);
+      border: none; width: 44px; height: 44px; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer;
+      color: var(--text);
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+      transition: background .25s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-btn:hover { background: rgba(255,255,255,.95); }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+    .carousel-dots {
+      display: flex; justify-content: center; gap: .5rem;
+      margin-top: 1.2rem;
+    }
+    .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: rgba(201,168,76,.3);
+      transition: background .3s, transform .3s;
+      cursor: pointer;
+    }
+    .dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(201,168,76,.15);
+      letter-spacing: .08em;
+    }
+
+    /* ===== SCROLL-REVEAL helper ===== */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      nav { gap: 1rem; font-size: .72rem; }
+      .hero-title { font-size: 1.8rem; }
+      .carousel-btn { width: 36px; height: 36px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#admiracion">Te Admiro</a>
+    <a href="#manifiesto">Manifiesto</a>
+    <a href="#sorpresa">Sorpresa</a>
+    <a href="#galeria">Nosotros</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <p class="hero-date">8 de Marzo &mdash; Dia de la Mujer</p>
+    <h1 class="hero-title">Para la mujer que ilumina mi vida</h1>
+    <p class="hero-sub">Hoy y siempre, este espacio es tuyo. Porque el mundo es mejor contigo en el.</p>
+    <div class="gold-line"></div>
+  </section>
+
+  <!-- ADMIRATION CARDS -->
+  <section id="admiracion">
+    <p class="section-label reveal">Lo que veo en ti</p>
+    <h2 class="section-title reveal">Las razones por las que te admiro</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <span class="card-icon">&#10024;</span>
+        <h3>Tu Fuerza</h3>
+        <p>Enfrentas cada reto con una determinacion que me deja sin palabras. Tu resiliencia no solo te define a ti, me inspira a ser mejor cada dia.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">&#128218;</span>
+        <h3>Tu Inteligencia</h3>
+        <p>La forma en que piensas, analiza y resuelve los desafios de la vida es extraordinaria. Tu mente es uno de los lugares mas fascinantes que conozco.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">&#128149;</span>
+        <h3>Tu Bondad</h3>
+        <p>Tienes la rara habilidad de hacer que quienes te rodean se sientan vistos y queridos. Esa generosidad es un regalo que el mundo necesita.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section id="manifiesto">
+    <p class="section-label reveal">Manifiesto de admiracion</p>
+    <h2 class="section-title reveal">Un reconocimiento a quien eres</h2>
+    <div class="manifesto-body">
+      <p class="reveal">
+        Hay algo profundamente hermoso en la forma en que persigues lo que amas. No lo haces con timidez ni con medias tintas: lo haces con una conviccion que ilumina cada rincon de tu camino. Ser testigo de tu determinacion no es solo un privilegio, es una leccion que llevo conmigo todos los dias.
+      </p>
+      <p class="reveal">
+        Me llena de un orgullo inmenso ver hasta donde has llegado. Cada logro que llevas en los hombros no es casualidad; es el resultado de noches de esfuerzo, de decisiones valientes y de una voluntad que pocas personas tienen. El mundo te reconocera siempre, porque tu huella es imposible de ignorar.
+      </p>
+      <p class="reveal">
+        Desde que estas en mi vida, las cosas tienen otro color. No es que antes faltara luz, es que contigo aprendi lo que significa ver con claridad. Eres presencia, eres calma, eres el tipo de persona que elevo cada vez que pienso en quien quiero ser. Hoy y siempre, celebro que existes.
+      </p>
+    </div>
+  </section>
+
+  <!-- SURPRISE SECTION -->
+  <section id="sorpresa">
+    <p class="section-label reveal">Para ti</p>
+    <h2 class="section-title reveal">Un ultimo regalo</h2>
+    <p class="reveal" style="color:var(--muted); margin-bottom:2rem; max-width:460px; margin-left:auto; margin-right:auto;">
+      Pulsa el boton y deja que el universo te diga algo importante.
+    </p>
+    <button class="btn-surprise reveal" id="btnSorpresa">Abrir mi regalo</button>
+    <div class="hidden-msg" id="hiddenMsg">
+      &#8220; Gracias por ser exactamente quien eres. Gracias por no encogerte para caber en espacios que no te merecen. Gracias por existir, por crecer, por brillar. Te amo con todo lo que soy. &#8221;
+    </div>
+  </section>
+
+  <!-- GALLERY CAROUSEL -->
+  <section id="galeria">
+    <p class="section-label reveal">Nuestra historia</p>
+    <h2 class="section-title reveal">Momentos que atesoro</h2>
+
+    <div class="carousel reveal" id="carousel">
+      <div class="carousel-track" id="track">
+        <!-- Slide 1: replace src with your photo path e.g. src="foto1.jpg" -->
+        <div class="slide">
+          <div class="slide-placeholder">
+            <span>&#128247;</span>
+            <p>Foto 1 &mdash; Reemplaza con tu imagen</p>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+          <div class="slide-placeholder">
+            <span>&#127774;</span>
+            <p>Foto 2 &mdash; Reemplaza con tu imagen</p>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+          <div class="slide-placeholder">
+            <span>&#10024;</span>
+            <p>Foto 3 &mdash; Reemplaza con tu imagen</p>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="slide">
+          <div class="slide-placeholder">
+            <span>&#128149;</span>
+            <p>Foto 4 &mdash; Reemplaza con tu imagen</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn prev" id="prevBtn">&#8592;</button>
+      <button class="carousel-btn next" id="nextBtn">&#8594;</button>
+    </div>
+
+    <div class="carousel-dots" id="dots">
+      <div class="dot active" data-i="0"></div>
+      <div class="dot" data-i="1"></div>
+      <div class="dot" data-i="2"></div>
+      <div class="dot" data-i="3"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Hecho con amor &mdash; 8 de Marzo 2026 &mdash; Solo para ti
+  </footer>
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script>
+    /* ===================================================
+       SCROLL-REVEAL
+    =================================================== */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ===================================================
+       HEART CONFETTI
+    =================================================== */
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx    = canvas.getContext('2d');
+    let particles = [];
+    let animId    = null;
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const HEARTS = ['&#10084;', '&#128149;', '&#128158;', '&#128147;'];
+    const COLORS = ['#F2A7BB','#E8CC7A','#C9A84C','#E8D5F5','#F9DCC4'];
+
+    function createParticle() {
+      return {
+        x:    Math.random() * canvas.width,
+        y:    -20,
+        vy:   1.5 + Math.random() * 3,
+        vx:   (Math.random() - .5) * 1.5,
+        rot:  Math.random() * 360,
+        rotV: (Math.random() - .5) * 4,
+        size: 16 + Math.random() * 18,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        char: '\u2764',
+        alpha: 1
+      };
+    }
+
+    function launchConfetti() {
+      particles = [];
+      for (let i = 0; i < 120; i++) {
+        const p = createParticle();
+        p.y = -20 - Math.random() * 400;
+        particles.push(p);
+      }
+      if (animId) cancelAnimationFrame(animId);
+      animateConfetti();
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x   += p.vx;
+        p.y   += p.vy;
+        p.rot += p.rotV;
+        if (p.y > canvas.height - 80) p.alpha -= .025;
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.font = `${p.size}px serif`;
+        ctx.fillStyle = p.color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.char, 0, 0);
+        ctx.restore();
+      });
+      particles = particles.filter(p => p.alpha > 0);
+      if (particles.length > 0) {
+        animId = requestAnimationFrame(animateConfetti);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    /* ===================================================
+       SURPRISE BUTTON
+    =================================================== */
+    document.getElementById('btnSorpresa').addEventListener('click', () => {
+      const msg = document.getElementById('hiddenMsg');
+      msg.classList.add('show');
+      launchConfetti();
+      document.getElementById('btnSorpresa').textContent = 'Te quiero mucho';
+      document.getElementById('btnSorpresa').disabled = false;
+    });
+
+    /* ===================================================
+       CAROUSEL
+    =================================================== */
+    const track  = document.getElementById('track');
+    const dots   = document.querySelectorAll('.dot');
+    const slides = track.children;
+    let current  = 0;
+
+    function goTo(i) {
+      current = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+    // Auto-advance every 4 s
+    setInterval(() => goTo(current + 1), 4000);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    track.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    });
+  </script>
+</body>
+</html>
